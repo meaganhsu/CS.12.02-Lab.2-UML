@@ -1,11 +1,11 @@
 import java.util.*;
-public class Cruiseship {
+public class Cruise {
     private String name;
     private int capacity;
     private ArrayList<Destination> itinerary;
     private ArrayList<Passenger> passengers;
 
-    public Cruiseship(String name, int capacity, ArrayList<Destination> itinerary, ArrayList<Passenger> passengers) {
+    public Cruise(String name, int capacity, ArrayList<Destination> itinerary, ArrayList<Passenger> passengers) {
         this.name = name;
         this.capacity = capacity;
         this.itinerary = itinerary;
@@ -21,18 +21,33 @@ public class Cruiseship {
     }
 
     public void printItinerary() {
-        System.out.println("Cruiseship: " + name);
+        System.out.println("Cruise: " + name);
         System.out.println("Total Destinations: " + itinerary.size());
 
-        for (int i = 0; i < itinerary.size(); i++) {
-            itinerary.get(i).printActivities();
+        for (Destination d : itinerary) {
+            d.printActivitiesAtDestination();
         }
     }
 
     public void printPassengers() {
-        System.out.println("Cruiseship: " + name);
+        System.out.println("Cruise: " + name);
+        System.out.println("Passenger Capacity: " + capacity);
+        System.out.println("Number of Passengers: " + passengers.size());
+
+        for (Passenger p : passengers) System.out.println(p.getName() + " (passenger id: " + p.getPassengerNum() + ")");
     }
 
+    public void printAvailableActivities() {
+        System.out.println("Available Activities: ");
+
+        for (Destination destination : itinerary) {
+            for (Activity a : destination.getActivities()) {
+                if (a.hasSpace()) a.printActivity();
+            }
+        }
+    }
+
+    // getters and setters
     public String getName() {
         return name;
     }
