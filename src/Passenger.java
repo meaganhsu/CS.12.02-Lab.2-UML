@@ -14,7 +14,12 @@ public class Passenger {
         this.activities = activities;
     }
 
-    public boolean signUp(Activity activity) {
+    public boolean eligibleSignUp(Activity activity) {
+        for (Activity a : activities) {
+            // passengers can only sign up for maximum 1 activity per destination
+            if (a.getDestination() == activity.getDestination()) return false;
+        }
+
         if (balance >= discount * activity.getCost() || activity.hasSpace()) {
             activities.add(activity);    // adding activity to passenger's itinerary
             setBalance(balance - discount * activity.getCost());      // deducting activity cost from balance
