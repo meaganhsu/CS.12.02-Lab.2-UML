@@ -7,13 +7,6 @@ public class Passenger {
     private double balance;
     private ArrayList<Activity> activities;
 
-    public Passenger(String name, double balance) {
-        this.name = name;
-        this.balance = balance;
-        activities = new ArrayList<>();
-        passengerNum = new Random().nextInt(10000,100000);     // random 5 digit number
-    }
-
     public boolean signUp(Activity activity) {
         for (Activity a : activities) {
             // passengers can only sign up for maximum 1 activity per destination
