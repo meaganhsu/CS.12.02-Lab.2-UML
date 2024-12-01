@@ -8,11 +8,9 @@ public class Activity {
     private Destination destination;
 
     public void printActivity() {
-        System.out.println(name + " (" + destination + ")");
-        System.out.println(description);
-        System.out.println("$" + cost + " | " + passengerCount + "/" + capacity);
-
-        if (capacity-passengerCount != 0) System.out.print(" (" + (capacity-passengerCount) + " spots available)");
+        System.out.println("  - " + name + " (" + destination.getName() + ")");
+        System.out.println("    " + description);
+        System.out.println("    " + "$" + cost + " | " + passengerCount + "/" + capacity + " (" + (capacity-passengerCount) + " spots available)");
     }
     public boolean hasSpace() {
         return passengerCount != capacity;

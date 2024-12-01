@@ -20,31 +20,34 @@ public class Cruise {
         if (!itinerary.contains(destination)) itinerary.add(destination);
     }
 
-    public void printItinerary() {
-        System.out.println("Cruise: " + name);
-        System.out.println("Total Destinations: " + itinerary.size());
+    // "\033[0;1m"   "\033[0m"
 
-        for (Destination d : itinerary) {
-            d.printActivitiesAtDestination();
-        }
+    public void printItinerary() {
+        System.out.println("Cruise: " + "\033[0;1m" + name + "\033[0m");
+        System.out.println("Total Destinations: " + itinerary.size() + "\n");
+
+        for (Destination d : itinerary) d.printActivitiesAtDestination();
+        System.out.println();
     }
 
     public void printPassengers() {
-        System.out.println("Cruise: " + name);
+        System.out.println("Cruise: " + "\033[0;1m" + name + "\033[0m");
         System.out.println("Passenger Capacity: " + capacity);
-        System.out.println("Number of Passengers: " + passengers.size());
+        System.out.println("Number of Passengers: " + passengers.size() + "\n");
 
-        for (Passenger p : passengers) System.out.println(p.getName() + " (passenger id: " + p.getPassengerNum() + ")");
+        for (Passenger p : passengers) System.out.println("  - " + p.getName() + " (passenger id: " + p.getPassengerNum() + ")");
+        System.out.println();
     }
 
     public void printAvailableActivities() {
-        System.out.println("Available Activities: ");
+        System.out.println("\033[0;1m" + "Available Activities: " + "\033[0m");
 
         for (Destination destination : itinerary) {
             for (Activity a : destination.getActivities()) {
                 if (a.hasSpace()) a.printActivity();
             }
         }
+        System.out.println("\n\n");
     }
 
     // getters and setters

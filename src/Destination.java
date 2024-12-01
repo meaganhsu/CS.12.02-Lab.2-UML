@@ -3,17 +3,26 @@ public class Destination {
     private String name;
     private ArrayList<Activity> activities;
 
-    public Destination(String name, ArrayList<Activity> activities) {
+    public Destination(String name) {
         this.name = name;
-        this.activities = activities;
+        activities = new ArrayList<>();
     }
 
     public void addActivity(Activity activity) {
-        if (!activities.contains(activity)) activities.add(activity);
+        boolean add = true;
+
+        for (Activity a : activities) {
+            if (a.getClass() == activity.getClass()) {
+                add = false;
+                break;
+            }
+        }
+
+        if (add) activities.add(activity);
     }
 
     public void printActivitiesAtDestination() {
-        System.out.println(name + ": ");
+        System.out.println("\033[0;1m" + name.toUpperCase() + ": " + "\033[0m");
         for (int i = 0; i < activities.size(); i++) {
             activities.get(i).printActivity();
 

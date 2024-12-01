@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Passenger {
     private String name;
@@ -7,20 +7,20 @@ public class Passenger {
     private double balance;
     private ArrayList<Activity> activities;
 
-    public Passenger(String name, int passengerNum, double balance, ArrayList<Activity> activities) {
+    public Passenger(String name, double balance) {
         this.name = name;
-        this.passengerNum = passengerNum;
         this.balance = balance;
-        this.activities = activities;
+        activities = new ArrayList<>();
+        passengerNum = new Random().nextInt(10000,100000);     // random 5 digit number
     }
 
-    public boolean eligibleSignUp(Activity activity) {
+    public boolean signUp(Activity activity) {
         for (Activity a : activities) {
             // passengers can only sign up for maximum 1 activity per destination
             if (a.getDestination() == activity.getDestination()) return false;
         }
 
-        if (balance >= discount * activity.getCost() || activity.hasSpace()) {
+        if (balance >= discount * activity.getCost() && activity.hasSpace()) {
             activities.add(activity);    // adding activity to passenger's itinerary
             setBalance(balance - discount * activity.getCost());      // deducting activity cost from balance
             activity.setPassengerCount(activity.getPassengerCount()+1);      // decreasing activity passenger count by 1
@@ -31,14 +31,15 @@ public class Passenger {
     }
 
     public void printPassengerInfo() {
-        System.out.println(name.toUpperCase());
+        System.out.println("\033[0;1m" + name.toUpperCase() + "\033[0m");
         System.out.println("Passenger id: " + passengerNum);
-        System.out.println("Balance: " + balance);
+        System.out.println("Balance: $" + balance);
         System.out.println("Registered Activities:");
 
         for (Activity a : activities) {
-            System.out.println(a.getName() + " (" + a.getDestination() + ") —— $" + (discount * a.getCost()));
+            System.out.println("  - " + a.getName() + " (" + a.getDestination().getName() + ") —— $" + (discount * a.getCost()));
         }
+        System.out.println();
     }
 
     // getters and setters

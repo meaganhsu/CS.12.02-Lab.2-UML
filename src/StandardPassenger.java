@@ -1,8 +1,10 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class StandardPassenger extends Passenger {
-    public StandardPassenger(String name, int passengerNum, double balance, ArrayList<Activity> activities) {
-        super(name, passengerNum, balance, activities);
+    public StandardPassenger(String name, double balance) {
+        super(name, balance);
+        setActivities(new ArrayList<>());
+        setPassengerNum(new Random().nextInt(10000,100000));     // random 5 digit number
         setDiscount(1);    // no discount
     }
 }
