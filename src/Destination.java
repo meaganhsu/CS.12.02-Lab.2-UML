@@ -25,8 +25,9 @@ public class Destination {
         System.out.println("\033[0;1m" + name.toUpperCase() + ": " + "\033[0m");
         for (int i = 0; i < activities.size(); i++) {
             activities.get(i).printActivity();
-
-//            System.out.println(i+1 + ". " + activities.get(i).getName() + " ($" + activities.get(i).getCost() + ", " + activities.get(i).getCapacity() + " participants.)");
+            if (activities.get(i) instanceof TheatreShow) {
+                ((TheatreShow) activities.get(i)).printStars();
+            }
         }
         System.out.println();
     }

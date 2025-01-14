@@ -20,4 +20,11 @@ public class TheatreShow extends Activity {
     public void setStarsAndRoles(ArrayList<String[]> starsAndRoles) {
         this.starsAndRoles = starsAndRoles;
     }
+
+    public void printStars() {
+        for (int i = 0; i < starsAndRoles.size(); i++) {
+            System.out.println("\t" + starsAndRoles.get(i)[0] + " as " + starsAndRoles.get(i)[1]);
+        }
+        System.out.println();
+    }
 }
